@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free 50GB 4G Internet Offer - All Pakistani Networks</title>
+<meta name="description" content="Claim your free 50GB 4G data bundle. Works on Jazz, Zong, Telenor and Ufone. Limited-time nationwide offer." />
+
+<!-- Fonts: Anton (display) + Manrope (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+  :root{
+    --accent:#FFD34D;
+    --wa:#25D366;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:#07231B;
+    color:#F2FBF6;
+    overflow-x:hidden;
+  }
+  .f-display{font-family:'Anton',Impact,sans-serif;letter-spacing:.015em}
+
+  /* ---------- ambient background layers ---------- */
+  .bg-dots{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
+    background-size:24px 24px;
+  }
+  .bg-glow{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(700px 420px at 85% -5%, rgba(255,211,77,.10), transparent 65%),
+      radial-gradient(900px 600px at -10% 30%, rgba(0,166,81,.16), transparent 60%),
+      radial-gradient(600px 500px at 90% 85%, rgba(0,165,220,.07), transparent 60%);
+  }
+  .float-chip{
+    position:fixed;z-index:0;pointer-events:none;
+    font-family:'Anton',sans-serif;
+    border:1px dashed rgba(255,255,255,.14);
+    color:rgba(255,255,255,.10);
+    border-radius:9999px;padding:.35rem 1rem;
+    animation:floaty 9s ease-in-out infinite alternate;
+  }
+  @keyframes floaty{
+    from{transform:translateY(-10px) rotate(-4deg)}
+    to{transform:translateY(14px) rotate(5deg)}
+  }
+
+  /* ---------- live ticker marquee ---------- */
+  .marquee{overflow:hidden;white-space:nowrap}
+  .marquee-track{display:inline-flex;gap:2.5rem;width:max-content;animation:marquee 38s linear infinite}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .live-dot{width:8px;height:8px;border-radius:9999px;background:#38ef7d;box-shadow:0 0 0 0 rgba(56,239,125,.7);animation:ping 1.4s infinite}
+  @keyframes ping{70%{box-shadow:0 0 0 9px rgba(56,239,125,0)}100%{box-shadow:0 0 0 0 rgba(56,239,125,0)}}
+
+  /* ---------- step transitions ---------- */
+  .step{display:none}
+  .step.active{display:block;animation:stepIn .5s cubic-bezier(.22,1,.36,1) both}
+  .step.step-exit{animation:stepOut .26s ease both}
+  @keyframes stepIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+  @keyframes stepOut{to{opacity:0;transform:translateY(-16px)}}
+
+  /* ---------- network tiles ---------- */
+  .net-tile{position:relative;overflow:hidden;transition:transform .22s ease, box-shadow .22s ease;cursor:pointer}
+  .net-tile::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(-45deg,rgba(255,255,255,.05) 0 10px,transparent 10px 22px);
+    pointer-events:none;
+  }
+  .net-tile:hover{transform:translateY(-6px) scale(1.02)}
+  .net-tile:active{transform:scale(.97)}
+  .net-tile.selected{outline:3px solid #fff;outline-offset:3px;transform:scale(1.03)}
+  .shine{position:relative;overflow:hidden}
+  .shine::before{
+    content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-20deg);transition:left .5s ease;pointer-events:none;
+  }
+  .shine:hover::before{left:130%}
+
+  /* ---------- signal bars ---------- */
+  .sig{display:inline-flex;align-items:flex-end;gap:3px;height:16px}
+  .sig i{width:4px;background:#fff;border-radius:2px;opacity:.35;animation:bar 1.2s ease-in-out infinite}
+  .sig i:nth-child(1){height:25%;animation-delay:0s}
+  .sig i:nth-child(2){height:50%;animation-delay:.15s}
+  .sig i:nth-child(3){height:75%;animation-delay:.3s}
+  .sig i:nth-child(4){height:100%;animation-delay:.45s}
+  @keyframes bar{0%,100%{opacity:.3}50%{opacity:1}}
+
+  /* ---------- voucher / SIM card ---------- */
+  .voucher{
+    background:linear-gradient(150deg,#0E3B2C,#0A2E22 60%,#0C3327);
+    border:1px solid rgba(255,211,77,.35);
+    box-shadow:0 25px 60px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+    animation:floaty 7s ease-in-out infinite alternate;
+  }
+  .sim-chip{
+    width:52px;height:40px;border-radius:8px;
+    background:linear-gradient(135deg,#F7D774,#C9971F 55%,#F3CE5B);
+    position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
+  }
+  .sim-chip::before,.sim-chip::after{content:"";position:absolute;background:rgba(0,0,0,.35)}
+  .sim-chip::before{left:0;right:0;top:18px;height:2px}
+  .sim-chip::after{top:0;bottom:0;left:25px;width:2px}
+  .barcode{
+    height:34px;
+    background:repeating-linear-gradient(90deg,#EAF7EF 0 2px,transparent 2px 5px,#EAF7EF 5px 6px,transparent 6px 10px);
+    opacity:.85;
+  }
+  .meter-fill{animation:meter 2.6s cubic-bezier(.2,.8,.2,1) .4s both}
+  @keyframes meter{from{width:4%}to{width:100%}}
+
+  /* ---------- buttons ---------- */
+  .btn-claim{animation:claimPulse 1.6s infinite}
+  @keyframes claimPulse{
+    0%{box-shadow:0 0 0 0 rgba(255,211,77,.55)}
+    70%{box-shadow:0 0 0 18px rgba(255,211,77,0)}
+    100%{box-shadow:0 0 0 0 rgba(255,211,77,0)}
+  }
+  .btn-wa:active{transform:scale(.97)}
+  .spin{animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- progress / misc ---------- */
+  .seg{transition:background .3s,transform .3s;background:rgba(255,255,255,.10)}
+  .seg.done{background:var(--wa);animation:pop .35s ease}
+  @keyframes pop{50%{transform:scale(1.25)}}
+  .shake{animation:shake .4s}
+  @keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+  .claim-row{animation:rowIn .5s ease both}
+  @keyframes rowIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+  .check-pop{animation:checkPop .6s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes checkPop{from{transform:scale(0) rotate(-30deg)}to{transform:scale(1) rotate(0)}}
+  #confettiCanvas{position:fixed;inset:0;z-index:60;pointer-events:none}
+
+
+</style>
+</head>
+
+<body class="relative min-h-screen">
+
+<!-- ambient layers -->
+<div class="bg-glow"></div>
+<div class="bg-dots"></div>
+<span class="float-chip text-xl" style="top:12%;left:4%">50GB</span>
+<span class="float-chip text-base" style="top:38%;right:5%;animation-delay:-3s">4G LTE</span>
+<span class="float-chip text-lg" style="bottom:22%;left:7%;animation-delay:-6s">FREE</span>
+<span class="float-chip text-sm" style="bottom:10%;right:10%;animation-delay:-2s">100%</span>
+
+
+
+<!-- live claim ticker -->
+<div class="relative z-10 mt-3 border-y border-white/10 bg-black/30">
+  <div class="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2">
+    <span class="flex shrink-0 items-center gap-2 text-[11px] font-extrabold tracking-widest text-emerald-300">
+      <span class="live-dot"></span> LIVE
+    </span>
+    <div class="marquee text-xs text-white/60">
+      <div class="marquee-track" id="tickerTrack"><!-- filled by JS --></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ MASTHEAD ══════════════════ -->
+<header class="relative z-10 mx-auto max-w-6xl px-4 pb-6 pt-10 md:pt-14">
+  <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+
+    <!-- left: copy -->
+    <div>
+      <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-emerald-300">
+        🇵🇰 Nationwide · Verified Today · No SIM Fee
+      </div>
+
+      <h1 class="f-display mt-5 text-5xl leading-[0.95] sm:text-6xl md:text-7xl">
+        Free <span class="text-[#FFD34D]">50GB</span> 4G<br class="hidden sm:block" />
+        Internet Offer
+        <span class="mt-2 block text-2xl tracking-wide text-white/70 sm:text-3xl md:text-4xl" style="-webkit-text-stroke:1px rgba(255,255,255,.55);color:transparent">
+          — All Pakistani Networks
+        </span>
+      </h1>
+
+      <p class="mt-4 max-w-xl text-sm leading-relaxed text-white/65 sm:text-base">
+        Jazz · Zong · Telenor · Ufone — pick your network, verify your number,
+        share with <b class="text-white">5 friends</b> and your
+        <b class="text-[#FFD34D]">50GB bundle</b> is activated. 100% free. No card required.
+      </p>
+
+      <!-- living stats row -->
+      <div class="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold">
+        <span class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2">
+          ⏳ Ends in <span id="countdown" class="f-display text-base tracking-widest text-[#FFD34D]">--:--:--</span>
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2">
+          👥 <span id="liveCount" class="text-emerald-300">48,214</span>&nbsp;claimed today
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-white/70">
+          🔒 SSL Secured
+        </span>
+      </div>
+
+      <!-- network mini chips -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="rounded-full px-3 py-1 text-[11px] font-extrabold text-white" style="background:#E4002B">JAZZ</span>
+        <span class="rounded-full px-3 py-1 text-[11px] font-extrabold text-white" style="background:#00A651">ZONG 4G</span>
+        <span class="rounded-full px-3 py-1 text-[11px] font-extrabold text-white" style="background:#009FE3">TELENOR</span>
+        <span class="rounded-full px-3 py-1 text-[11px] font-extrabold text-white" style="background:#F68B1F">UFONE</span>
+      </div>
+    </div>
+
+    <!-- right: data voucher card -->
+    <div class="relative mx-auto w-full max-w-sm">
+      <div class="voucher relative rounded-2xl p-6">
+        <span class="f-display absolute -right-3 -top-4 rotate-6 rounded-lg bg-[#FFD34D] px-3 py-1 text-sm text-black shadow-lg">100% FREE</span>
+        <div class="flex items-start justify-between">
+          <div class="sim-chip"></div>
+          <span class="sig"><i></i><i></i><i></i><i></i></span>
+        </div>
+        <p class="mt-5 text-[10px] font-extrabold uppercase tracking-[0.35em] text-white/40">Data Voucher · PK</p>
+        <div class="f-display mt-1 flex items-end gap-2">
+          <span class="text-7xl leading-none text-[#FFD34D]">50</span>
+          <span class="pb-1 text-2xl text-white/80">GB</span>
+        </div>
+        <p class="mt-1 text-xs font-semibold text-white/50">4G LTE · Valid 30 days · All networks</p>
+
+        <div class="mt-5">
+          <div class="mb-1 flex justify-between text-[10px] font-bold uppercase tracking-widest text-white/40">
+            <span>Bundle loading</span><span id="meterPct">100%</span>
+          </div>
+          <div class="h-2.5 overflow-hidden rounded-full bg-white/10">
+            <div class="meter-fill h-full rounded-full bg-gradient-to-r from-emerald-400 to-[#FFD34D]"></div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-end justify-between gap-4 border-t border-dashed border-white/15 pt-4">
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.25em] text-white/35">Voucher No.</p>
+            <p class="f-display text-sm tracking-[0.2em] text-white/70">PK-2026-50GB-7841</p>
+          </div>
+          <div class="barcode w-28 shrink-0"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════ 4-STEP FLOW ══════════════════ -->
+<main class="relative z-10 mx-auto max-w-3xl px-4 pb-10" id="flowTop">
+
+  <!-- step indicator -->
+  <ol class="relative mx-auto mb-8 flex max-w-xl items-center justify-between" id="indicator">
+    <div class="absolute left-6 right-6 top-4 h-0.5 bg-white/10">
+      <div id="indicatorFill" class="h-full bg-gradient-to-r from-emerald-400 to-[#FFD34D] transition-all duration-700" style="width:0%"></div>
+    </div>
+    <li class="ind-item relative z-10 flex flex-col items-center gap-1" data-step="1">
+      <span class="ind-dot f-display flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#FFD34D] bg-[#07231B] text-sm text-[#FFD34D] transition-all">1</span>
+      <span class="ind-label text-[10px] font-extrabold uppercase tracking-widest text-white/50">Network</span>
+    </li>
+    <li class="ind-item relative z-10 flex flex-col items-center gap-1" data-step="2">
+      <span class="ind-dot f-display flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/20 bg-[#07231B] text-sm text-white/40 transition-all">2</span>
+      <span class="ind-label text-[10px] font-extrabold uppercase tracking-widest text-white/50">Verify</span>
+    </li>
+    <li class="ind-item relative z-10 flex flex-col items-center gap-1" data-step="3">
+      <span class="ind-dot f-display flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/20 bg-[#07231B] text-sm text-white/40 transition-all">3</span>
+      <span class="ind-label text-[10px] font-extrabold uppercase tracking-widest text-white/50">Share</span>
+    </li>
+    <li class="ind-item relative z-10 flex flex-col items-center gap-1" data-step="4">
+      <span class="ind-dot f-display flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/20 bg-[#07231B] text-sm text-white/40 transition-all">4</span>
+      <span class="ind-label text-[10px] font-extrabold uppercase tracking-widest text-white/50">Claim</span>
+    </li>
+  </ol>
+
+  <!-- step panel -->
+  <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B2E23]/90 shadow-2xl">
+    <div class="h-1.5 w-full" id="panelAccent" style="background:linear-gradient(90deg,#FFD34D,#00A651)"></div>
+    <div class="p-6 sm:p-8">
+
+      <!-- ─────────── STEP 1 · NETWORK SELECTION ─────────── -->
+      <section id="step1" class="step active">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.3em] text-[#FFD34D]">Step 1 of 4</p>
+        <h2 class="f-display mt-1 text-3xl sm:text-4xl">SELECT YOUR NETWORK</h2>
+        <p class="mt-2 text-sm text-white/60">Tap the SIM you use — the offer works on every major Pakistani network.</p>
+
+        <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+
+          <!-- Jazz -->
+          <button class="net-tile shine group rounded-xl p-4 text-left text-white"
+                  style="background:linear-gradient(160deg,#FF1E46,#A6001F);box-shadow:0 12px 30px -12px rgba(228,0,43,.6)"
+                  data-net="jazz" aria-label="Select Jazz">
+            <span class="absolute right-2 top-2 rounded bg-black/30 px-1.5 py-0.5 text-[8px] font-extrabold tracking-widest">HOT 🔥</span>
+            <span class="sig"><i></i><i></i><i></i><i></i></span>
+            <span class="f-display mt-3 block text-2xl leading-none">JAZZ</span>
+            <span class="mt-1 block text-[11px] font-bold text-white/75">030x · 032x</span>
+            <span class="mt-3 inline-block rounded-full bg-white/20 px-2.5 py-1 text-[9px] font-extrabold tracking-widest group-hover:bg-white group-hover:text-[#A6001F] transition-colors">TAP TO SELECT →</span>
+          </button>
+
+          <!-- Zong -->
+          <button class="net-tile shine group rounded-xl p-4 text-left text-white"
+                  style="background:linear-gradient(160deg,#00C160,#007A3D);box-shadow:0 12px 30px -12px rgba(0,166,81,.6)"
+                  data-net="zong" aria-label="Select Zong">
+            <span class="sig"><i></i><i></i><i></i><i></i></span>
+            <span class="f-display mt-6 block text-2xl leading-none">ZONG <span class="text-[#FFC20E]">4G</span></span>
+            <span class="mt-1 block text-[11px] font-bold text-white/75">031x</span>
+            <span class="mt-3 inline-block rounded-full bg-white/20 px-2.5 py-1 text-[9px] font-extrabold tracking-widest group-hover:bg-white group-hover:text-[#007A3D] transition-colors">TAP TO SELECT →</span>
+          </button>
+
+          <!-- Telenor -->
+          <button class="net-tile shine group rounded-xl p-4 text-left text-white"
+                  style="background:linear-gradient(160deg,#18B4F0,#0072B9);box-shadow:0 12px 30px -12px rgba(0,159,227,.6)"
+                  data-net="telenor" aria-label="Select Telenor">
+            <span class="sig"><i></i><i></i><i></i><i></i></span>
+            <span class="f-display mt-6 block text-2xl leading-none">TELENOR</span>
+            <span class="mt-1 block text-[11px] font-bold text-white/75">034x</span>
+            <span class="mt-3 inline-block rounded-full bg-white/20 px-2.5 py-1 text-[9px] font-extrabold tracking-widest group-hover:bg-white group-hover:text-[#0072B9] transition-colors">TAP TO SELECT →</span>
+          </button>
+
+          <!-- Ufone -->
+          <button class="net-tile shine group rounded-xl p-4 text-left text-white"
+                  style="background:linear-gradient(160deg,#FFA53C,#E06C00);box-shadow:0 12px 30px -12px rgba(246,139,31,.6)"
+                  data-net="ufone" aria-label="Select Ufone">
+            <span class="sig"><i></i><i></i><i></i><i></i></span>
+            <span class="f-display mt-6 block text-2xl leading-none">UFONE</span>
+            <span class="mt-1 block text-[11px] font-bold text-white/75">033x</span>
+            <span class="mt-3 inline-block rounded-full bg-white/20 px-2.5 py-1 text-[9px] font-extrabold tracking-widest group-hover:bg-white group-hover:text-[#E06C00] transition-colors">TAP TO SELECT →</span>
+          </button>
+        </div>
+
+        <p class="mt-6 text-center text-[11px] text-white/40">⚡ 2,14,000+ bundles already reserved this week — selection is first-come, first-served.</p>
+      </section>
+
+      <!-- ─────────── STEP 2 · NUMBER VERIFY ─────────── -->
+      <section id="step2" class="step">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.3em] text-[#FFD34D]">Step 2 of 4</p>
+        <h2 class="f-display mt-1 text-3xl sm:text-4xl">VERIFY YOUR NUMBER</h2>
+        <p class="mt-2 text-sm text-white/60">Enter the number that will receive the 50GB bundle.</p>
+
+        <div class="mt-5 flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm">
+          <span id="netBadge" class="f-display rounded px-2.5 py-0.5 text-sm text-white" style="background:#E4002B">JAZZ</span>
+          <span id="netCodes" class="text-xs text-white/50">030x · 032x numbers</span>
+          <button id="changeNet" class="ml-auto text-[11px] font-extrabold text-[#FFD34D] hover:underline">← Change</button>
+        </div>
+
+        <label for="phoneInput" class="mt-6 block text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/45">Mobile Number</label>
+        <div class="mt-2 flex overflow-hidden rounded-xl border-2 border-white/15 bg-black/30 focus-within:border-[#FFD34D] transition-colors" id="phoneWrap">
+          <span class="flex items-center gap-1.5 border-r border-white/15 bg-white/5 px-3 text-sm font-extrabold text-white/70">🇵🇰 +92</span>
+          <input id="phoneInput" type="tel" inputmode="numeric" autocomplete="tel" placeholder="03XX XXXXXXX"
+                 class="f-display w-full bg-transparent px-4 py-4 text-2xl tracking-[0.12em] text-white outline-none placeholder:text-white/25 sm:text-3xl" />
+        </div>
+        <p id="phoneHint" class="mt-2 min-h-[1.1rem] text-xs font-semibold text-white/40">We detect your network automatically from the code.</p>
+
+        <button id="verifyBtn"
+                class="shine mt-6 flex w-full items-center justify-center gap-3 rounded-xl py-4 text-base font-extrabold uppercase tracking-widest text-black transition-all"
+                style="background:linear-gradient(180deg,#FFE082,#FFD34D 45%,#F0B90B)">
+          <span id="verifyLabel">🔍 Verify Number</span>
+          <span id="verifySpin" class="spin hidden h-5 w-5 rounded-full border-[3px] border-black/30 border-t-black"></span>
+        </button>
+        <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div id="verifyBar" class="h-full w-0 rounded-full bg-emerald-400 transition-all duration-[2000ms] ease-linear"></div>
+        </div>
+
+        <p class="mt-4 text-center text-[11px] text-white/40">🔒 256-bit encrypted · Your number is used only to deliver the bundle.</p>
+      </section>
+
+      <!-- ─────────── STEP 3 · WHATSAPP SHARE ─────────── -->
+      <section id="step3" class="step">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.3em] text-[#FFD34D]">Step 3 of 4</p>
+        <h2 class="f-display mt-1 text-3xl sm:text-4xl">ACTIVATE VIA WHATSAPP</h2>
+
+        <div class="mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4">
+          <p class="text-sm leading-relaxed text-emerald-100">
+            ✅ <b>Your number <span id="registeredNum" class="tracking-wider">03XX XXXXXXX</span> is registered!</b>
+            To activate the offer, share this offer with <b>5 friends or groups</b> on WhatsApp.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-end justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/45">Share progress</p>
+            <p class="f-display text-4xl text-white"><span id="shareNum" class="text-[#25D366]">0</span>/5 <span class="text-lg text-white/50">shares completed</span></p>
+          </div>
+          <span id="sharePct" class="f-display text-2xl text-white/30">0%</span>
+        </div>
+        <div class="mt-3 grid grid-cols-5 gap-2" id="segments">
+          <div class="seg h-4 rounded-md"></div><div class="seg h-4 rounded-md"></div><div class="seg h-4 rounded-md"></div><div class="seg h-4 rounded-md"></div><div class="seg h-4 rounded-md"></div>
+        </div>
+
+        <button id="shareBtn"
+                class="btn-wa shine mt-6 flex w-full items-center justify-center gap-3 rounded-xl py-4 text-base font-extrabold uppercase tracking-widest text-white transition-all"
+                style="background:linear-gradient(180deg,#3BE477,#1FAF54);box-shadow:0 14px 34px -12px rgba(37,211,102,.55)">
+          <svg viewBox="0 0 32 32" class="h-6 w-6 fill-current"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.3.7 4.5 1.9 6.4L4 29l7.8-1.8c1.8 1 3.8 1.5 4.2 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.6 16.9c-.3.8-1.6 1.6-2.3 1.6-.6.1-1.3.2-4.4-1-3.7-1.5-6.1-5.3-6.3-5.5-.2-.2-1.5-2-1.5-3.8s.9-2.7 1.3-3c.3-.4.7-.5.9-.5h.7c.2 0 .5-.1.8.6.3.8 1.1 2.6 1.2 2.8.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.9-.1.2-.3 1-1.2 1.3-1.6.3-.4.5-.3.9-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.1.1.9-.2 1.4z"/></svg>
+          <span id="shareLabel">Share on WhatsApp</span>
+        </button>
+        <p class="mt-3 text-center text-[11px] leading-relaxed text-white/40">
+          Tap the button → choose a friend or group in WhatsApp → press send.<br/>Then come back and repeat until you reach 5/5.
+        </p>
+
+        <div id="unlockBanner" class="mt-5 hidden rounded-xl border border-[#FFD34D]/40 bg-[#FFD34D]/10 p-4 text-center">
+          <p class="f-display text-xl text-[#FFD34D]">🎉 ALL 5 SHARES VERIFIED!</p>
+          <p class="mt-1 text-xs text-white/60">Unlocking your 50GB bundle… please wait</p>
+        </div>
+      </section>
+
+      <!-- ─────────── STEP 4 · SUCCESS + CLAIM ─────────── -->
+      <section id="step4" class="step text-center">
+        <div class="check-pop mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-4xl shadow-[0_0_50px_rgba(52,211,153,.5)]">🎉</div>
+        <h2 class="f-display mt-4 text-4xl text-[#FFD34D] sm:text-5xl">CONGRATULATIONS!</h2>
+        <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">
+          <b class="text-white">You have received 50GB data for 1 month.</b><br/>
+          Your data will be credited within <b class="text-emerald-300">1 hour</b>.
+        </p>
+
+        <div class="mx-auto mt-6 grid max-w-md grid-cols-3 gap-3 text-center">
+          <div class="rounded-lg border border-white/10 bg-white/5 py-3">
+            <p class="f-display text-2xl text-[#FFD34D]">50GB</p><p class="text-[9px] font-extrabold uppercase tracking-widest text-white/45">Data Bundle</p>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 py-3">
+            <p class="f-display text-2xl text-[#FFD34D]">30</p><p class="text-[9px] font-extrabold uppercase tracking-widest text-white/45">Days Valid</p>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 py-3">
+            <p class="f-display text-2xl text-[#FFD34D]">4G</p><p class="text-[9px] font-extrabold uppercase tracking-widest text-white/45">LTE Speed</p>
+          </div>
+        </div>
+
+        <!-- ▼ SMARTLINK / AD NETWORK DIRECT LINK PLACEHOLDER ▼ -->
+        <a id="claimBtn" href="https://example.com/your-ad-network-smartlink-here" target="_blank" rel="noopener nofollow sponsored"
+           class="btn-claim shine mt-7 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-xl py-5 text-lg font-extrabold uppercase tracking-widest text-black"
+           style="background:linear-gradient(180deg,#FFE082,#FFD34D 45%,#F0B90B)">
+          🚀 Claim Now / Final Verify ➜
+        </a>
+        <!-- ▲ Replace the href above with your Adsterra / Monetag smartlink ▲ -->
+
+        <p class="mt-4 text-xs font-bold text-white/50">⏳ Claim slot reserved for <span id="claimTimer" class="f-display text-base text-[#FF1E46]">10:00</span> — complete verification before it expires.</p>
+        <p class="mt-1 text-[11px] text-white/35">Final human verification is required by the sponsor to release your bundle.</p>
+      </section>
+
+    </div>
+  </div>
+
+
+
+  <!-- live claims feed + offer details -->
+  <div class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="rounded-2xl border border-white/10 bg-[#0B2E23]/80 p-5">
+      <div class="flex items-center justify-between">
+        <h3 class="f-display text-xl">RECENT CLAIMS</h3>
+        <span class="flex items-center gap-1.5 text-[10px] font-extrabold tracking-widest text-emerald-300"><span class="live-dot"></span>LIVE FEED</span>
+      </div>
+      <ul id="claimsFeed" class="mt-4 space-y-2.5 text-sm"><!-- filled by JS --></ul>
+    </div>
+    <div class="rounded-2xl border border-white/10 bg-[#0B2E23]/80 p-5">
+      <h3 class="f-display text-xl">OFFER DETAILS</h3>
+      <ul class="mt-4 space-y-3 text-sm text-white/70">
+        <li class="flex gap-3"><span class="text-emerald-400">✔</span> 50GB 4G/LTE data bundle, valid for 30 days</li>
+        <li class="flex gap-3"><span class="text-emerald-400">✔</span> Works on Jazz, Zong, Telenor &amp; Ufone SIMs</li>
+        <li class="flex gap-3"><span class="text-emerald-400">✔</span> No charges, no card, no hidden subscription</li>
+        <li class="flex gap-3"><span class="text-emerald-400">✔</span> Bundle credited within 1 hour after verification</li>
+        <li class="flex gap-3"><span class="text-emerald-400">✔</span> Limited slots — one claim per mobile number</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+
+
+<footer class="relative z-10 border-t border-white/10 bg-black/30 py-6">
+  <div class="mx-auto max-w-5xl px-4 text-center">
+    <p class="text-xs font-bold text-white/50">Free 50GB 4G Internet Offer · All Pakistani Networks 🇵🇰</p>
+    <p class="mx-auto mt-2 max-w-xl text-[10px] leading-relaxed text-white/30">
+      Demo/template page for promotional use. Not affiliated with, endorsed by, or sponsored by Jazz, Zong, Telenor or Ufone — all trademarks belong to their respective owners. Replace all placeholder links with your own before publishing.
+    </p>
+  </div>
+</footer>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ════════════════════ CONFIG ════════════════════ */
+const NETWORKS = {
+  jazz:    { name:'JAZZ',    codes:'030x · 032x numbers', color:'#E4002B', prefixes:['0','2'] },
+  zong:    { name:'ZONG 4G', codes:'031x numbers',        color:'#00A651', prefixes:['1'] },
+  telenor: { name:'TELENOR', codes:'034x numbers',        color:'#009FE3', prefixes:['4'] },
+  ufone:   { name:'UFONE',   codes:'033x numbers',        color:'#F68B1F', prefixes:['3'] },
+};
+
+const OFFER_URL  = 'https://your-offer-link-here.com'; // ← replace with your live page URL
+const SHARE_TEXT =
+`🎁 FREE 50GB 4G Internet Offer for ALL Pakistani Networks! 🇵🇰
+✅ Jazz · Zong · Telenor · Ufone
+✅ 100% free — no charges, no card
+👇 Claim yours before the offer ends:
+${OFFER_URL}`;
+const WA_URL = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(SHARE_TEXT);
+
+const state = { step:1, network:null, phone:'', shares:0 };
+
+/* ════════════════════ STEP ENGINE ════════════════════ */
+function gotoStep(n){
+  if(n === state.step) return;
+  const cur = document.getElementById('step'+state.step);
+  const nxt = document.getElementById('step'+n);
+  cur.classList.add('step-exit');
+  setTimeout(()=>{
+    cur.classList.remove('active','step-exit');
+    nxt.classList.add('active');
+    state.step = n;
+    updateIndicator();
+    document.getElementById('flowTop').scrollIntoView({behavior:'smooth',block:'start'});
+    if(n===3) enterStep3();
+    if(n===4) enterStep4();
+  },260);
+}
+
+function updateIndicator(){
+  document.querySelectorAll('.ind-item').forEach(li=>{
+    const s = +li.dataset.step;
+    const dot = li.querySelector('.ind-dot');
+    if(s < state.step){ dot.textContent='✓'; dot.style.borderColor='#34D399'; dot.style.background='#065F46'; dot.style.color='#fff'; }
+    else if(s === state.step){ dot.textContent=s; dot.style.borderColor='#FFD34D'; dot.style.background='#07231B'; dot.style.color='#FFD34D'; dot.style.boxShadow='0 0 18px rgba(255,211,77,.45)'; }
+    else { dot.textContent=s; dot.style.borderColor='rgba(255,255,255,.2)'; dot.style.background='#07231B'; dot.style.color='rgba(255,255,255,.4)'; dot.style.boxShadow='none'; }
+  });
+  document.getElementById('indicatorFill').style.width = ((state.step-1)/3*100)+'%';
+}
+
+/* allow clicking completed indicator steps to go back */
+document.querySelectorAll('.ind-item').forEach(li=>{
+  li.addEventListener('click',()=>{
+    const s = +li.dataset.step;
+    if(s < state.step && state.step < 4) gotoStep(s);
+  });
+});
+
+/* ════════════════════ STEP 1 · NETWORK ════════════════════ */
+document.querySelectorAll('.net-tile').forEach(tile=>{
+  tile.addEventListener('click',()=>{
+    if(tile.classList.contains('selected')) return;
+    document.querySelectorAll('.net-tile').forEach(t=>t.classList.remove('selected'));
+    tile.classList.add('selected');
+    state.network = tile.dataset.net;
+    const net = NETWORKS[state.network];
+    /* theme step-2 + panel accent to the chosen brand */
+    document.getElementById('netBadge').textContent = net.name;
+    document.getElementById('netBadge').style.background = net.color;
+    document.getElementById('netCodes').textContent = net.codes;
+    document.getElementById('panelAccent').style.background = `linear-gradient(90deg,#FFD34D,${net.color})`;
+    setTimeout(()=>gotoStep(2), 420);
+  });
+});
+document.getElementById('changeNet').addEventListener('click',()=>gotoStep(1));
+
+/* ════════════════════ STEP 2 · PHONE VERIFY ════════════════════ */
+const phoneInput = document.getElementById('phoneInput');
+const phoneHint  = document.getElementById('phoneHint');
+const verifyBtn  = document.getElementById('verifyBtn');
+
+function digitsOf(v){ return v.replace(/\D/g,'').slice(0,11); }
+function detectNetwork(d){
+  if(d.length < 3 || !d.startsWith('03')) return null;
+  for(const key in NETWORKS){ if(NETWORKS[key].prefixes.includes(d[2])) return key; }
+  return null;
+}
+
+phoneInput.addEventListener('input',()=>{
+  const d = digitsOf(phoneInput.value);
+  state.phone = d;
+  phoneInput.value = d.length > 4 ? d.slice(0,4)+' '+d.slice(4) : d;
+  const netKey = detectNetwork(d);
+  if(d.length === 0){
+    phoneHint.textContent = 'We detect your network automatically from the code.';
+    phoneHint.className = 'mt-2 min-h-[1.1rem] text-xs font-semibold text-white/40';
+  } else if(d.length === 11){
+    phoneHint.textContent = '✓ Valid number — ready to verify!';
+    phoneHint.className = 'mt-2 min-h-[1.1rem] text-xs font-semibold text-emerald-300';
+  } else if(netKey){
+    phoneHint.textContent = `Detected network: ${NETWORKS[netKey].name}`;
+    phoneHint.className = 'mt-2 min-h-[1.1rem] text-xs font-semibold text-[#FFD34D]';
+  } else {
+    phoneHint.textContent = 'Number must start with 03 (e.g. 0300 1234567)';
+    phoneHint.className = 'mt-2 min-h-[1.1rem] text-xs font-semibold text-red-400';
+  }
+});
+
+verifyBtn.addEventListener('click',()=>{
+  const valid = state.phone.length === 11 && state.phone.startsWith('03');
+  if(!valid){
+    document.getElementById('phoneWrap').classList.add('shake');
+    setTimeout(()=>document.getElementById('phoneWrap').classList.remove('shake'),450);
+    return;
+  }
+  if(verifyBtn.disabled) return;
+  verifyBtn.disabled = true;
+  document.getElementById('verifySpin').classList.remove('hidden');
+  document.getElementById('verifyBar').style.width = '100%';
+  const msgs = ['Connecting to secure server…','Verifying with network database…','Registering your SIM ✓'];
+  const label = document.getElementById('verifyLabel');
+  label.textContent = msgs[0];
+  let i = 0;
+  const iv = setInterval(()=>{ i = Math.min(i+1,msgs.length-1); label.textContent = msgs[i]; },700);
+  setTimeout(()=>{
+    clearInterval(iv);
+    label.textContent = '✓ Number Verified!';
+    verifyBtn.style.background = 'linear-gradient(180deg,#3BE477,#1FAF54)';
+    verifyBtn.style.color = '#fff';
+    setTimeout(()=>gotoStep(3), 550);
+  },2000);
+});
+
+/* reset verify UI when (re-)entering step 2 */
+function resetVerify(){
+  verifyBtn.disabled = false;
+  verifyBtn.style.background = 'linear-gradient(180deg,#FFE082,#FFD34D 45%,#F0B90B)';
+  verifyBtn.style.color = '#000';
+  document.getElementById('verifyLabel').textContent = '🔍 Verify Number';
+  document.getElementById('verifySpin').classList.add('hidden');
+  const bar = document.getElementById('verifyBar');
+  bar.style.transition = 'none'; bar.style.width = '0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.transition='width 2s linear'));
+}
+const _origGoto = gotoStep;
+/* hook reset into step transitions */
+document.querySelectorAll('.ind-item')[0].addEventListener('click',resetVerify);
+document.getElementById('changeNet').addEventListener('click',resetVerify);
+
+/* ════════════════════ STEP 3 · WHATSAPP SHARES ════════════════════ */
+function enterStep3(){
+  document.getElementById('registeredNum').textContent =
+    state.phone.slice(0,4)+' '+state.phone.slice(4) || '03XX XXXXXXX';
+}
+const shareBtn = document.getElementById('shareBtn');
+const shareMsgs = [
+  '✅ Sent! 1 share done — keep going!',
+  '🔥 2 down! Just 3 more to unlock 50GB',
+  '⚡ Halfway there — your 50GB is loading…',
+  '🚀 Almost done — 1 more share to go!',
+  '🎉 All shares received!'
+];
+shareBtn.addEventListener('click',()=>{
+  if(state.shares >= 5) return;
+  try { window.open(WA_URL,'_blank','noopener,noreferrer'); } catch(e){}
+  state.shares++;
+  const segs = document.querySelectorAll('#segments .seg');
+  if(segs[state.shares-1]) segs[state.shares-1].classList.add('done');
+  const num = document.getElementById('shareNum');
+  num.textContent = state.shares;
+  num.style.display='inline-block'; num.style.animation='none'; num.offsetWidth; num.style.animation='pop .35s ease';
+  document.getElementById('sharePct').textContent = (state.shares*20)+'%';
+  document.getElementById('shareLabel').textContent = shareMsgs[state.shares-1];
+  shareBtn.style.transform = 'scale(0.96)';
+  setTimeout(()=>shareBtn.style.transform='scale(1)',120);
+  if(state.shares >= 5){
+    shareBtn.disabled = true;
+    shareBtn.style.opacity = '.85';
+    document.getElementById('unlockBanner').classList.remove('hidden');
+    setTimeout(()=>gotoStep(4), 1600);
+  }
+});
+
+/* ════════════════════ STEP 4 · SUCCESS + CONFETTI ════════════════════ */
+let claimIv = null;
+function enterStep4(){
+  burstConfetti(); setTimeout(burstConfetti, 700);
+  /* 10-minute claim countdown */
+  let left = 600;
+  const el = document.getElementById('claimTimer');
+  clearInterval(claimIv);
+  claimIv = setInterval(()=>{
+    left = Math.max(0,left-1);
+    const m = String(Math.floor(left/60)).padStart(2,'0');
+    const s = String(left%60).padStart(2,'0');
+    el.textContent = `${m}:${s}`;
+    if(left===0) clearInterval(claimIv);
+  },1000);
+}
+
+/* lightweight canvas confetti */
+function burstConfetti(){
+  const cv = document.getElementById('confettiCanvas');
+  cv.width = innerWidth; cv.height = innerHeight;
+  const ctx = cv.getContext('2d');
+  const colors = ['#FFD34D','#34D399','#FFFFFF','#E4002B','#009FE3','#F68B1F'];
+  const pieces = [];
+  for(let i=0;i<160;i++){
+    pieces.push({
+      x: innerWidth/2 + (Math.random()-.5)*innerWidth*.5,
+      y: -20 - Math.random()*120,
+      w: 6+Math.random()*6, h: 8+Math.random()*8,
+      vx:(Math.random()-.5)*3.2, vy:2.2+Math.random()*3.4,
+      rot: Math.random()*Math.PI, vr:(Math.random()-.5)*.25,
+      c: colors[Math.floor(Math.random()*colors.length)]
+    });
+  }
+  let life = 0;
+  (function frame(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    let alive = false;
+    pieces.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.vy+=.04; p.rot+=p.vr;
+      if(p.y < cv.height+30){ alive = true;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      }
+    });
+    life++;
+    if(alive && life < 320) requestAnimationFrame(frame);
+    else ctx.clearRect(0,0,cv.width,cv.height);
+  })();
+}
+
+/* ════════════════════ LIVING ELEMENTS ════════════════════ */
+const NAMES  = ['Ahmed','Fatima','Bilal','Ayesha','Usman','Zainab','Hamza','Maryam','Ali','Sana','Omar','Hira','Imran','Noor','Kashif','Rabia','Fahad','Mahnoor'];
+const CITIES = ['Karachi','Lahore','Islamabad','Faisalabad','Rawalpindi','Multan','Peshawar','Sialkot','Gujranwala','Hyderabad','Quetta','Bahawalpur'];
+const rnd = a => a[Math.floor(Math.random()*a.length)];
+const maskedNum = ()=> `03${Math.floor(Math.random()*5)}${Math.floor(Math.random()*10)}•••${Math.floor(100+Math.random()*899)}`;
+const ago = ()=> `${1+Math.floor(Math.random()*22)} min ago`;
+
+/* ticker */
+(function buildTicker(){
+  let items = '';
+  for(let i=0;i<12;i++){
+    items += `<span>🟢 ${maskedNum()} · ${rnd(NAMES)} from ${rnd(CITIES)} claimed <b class="text-emerald-300">50GB</b> ✓ · ${ago()}</span>`;
+  }
+  document.getElementById('tickerTrack').innerHTML = items + items; /* duplicate for seamless loop */
+})();
+
+/* live claims feed */
+const feed = document.getElementById('claimsFeed');
+function pushClaim(){
+  const li = document.createElement('li');
+  li.className = 'claim-row flex items-center justify-between gap-3 rounded-lg border border-white/5 bg-white/5 px-3 py-2';
+  li.innerHTML = `<span class="truncate"><b>${rnd(NAMES)}</b> · ${rnd(CITIES)} <span class="text-white/35">(${maskedNum()})</span></span>
+                  <span class="shrink-0 text-[10px] font-extrabold text-emerald-300">+50GB ✓</span>`;
+  feed.prepend(li);
+  while(feed.children.length > 6) feed.lastChild.remove();
+}
+for(let i=0;i<5;i++) pushClaim();
+setInterval(pushClaim, 4200);
+
+/* live counter */
+let claimed = 48214;
+const liveEl = document.getElementById('liveCount');
+setInterval(()=>{ claimed += 1+Math.floor(Math.random()*3); liveEl.textContent = claimed.toLocaleString(); }, 2800);
+
+/* countdown to midnight (offer "ends today") */
+function tick(){
+  const now = new Date(), end = new Date(now);
+  end.setHours(23,59,59,999);
+  let d = Math.max(0, end - now);
+  const h = String(Math.floor(d/3.6e6)).padStart(2,'0');
+  const m = String(Math.floor(d%3.6e6/6e4)).padStart(2,'0');
+  const s = String(Math.floor(d%6e4/1e3)).padStart(2,'0');
+  document.getElementById('countdown').textContent = `${h}:${m}:${s}`;
+}
+tick(); setInterval(tick,1000);
+
+updateIndicator();
+</script>
+</body>
+</html>
